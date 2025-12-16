@@ -4,26 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div id="demo"></div>
     <header>
       <h1>My Cart</h1>
       <button type="button">Refresh</button>
     </header>
-    <main>
-      <input type="text" placeholder="Search products by title" />
-      <ul id="product-list"></ul>
-    </main>
-    <aside>
-      <h2>Cart Summary</h2>
-      <ul>
-        <li>Total Products</li>
-        <li>Total Quantity</li>
-        <li>Total Price</li>
-      </ul>
-      <button type="button">Proceed to Checkout</button>
-    </aside>
-    <script src="./script/index.js"></script>
+    <div class="container">
+      <main>
+        <input type="text" placeholder="Search products by title" />
+        <ul id="product-list"></ul>
+      </main>
+      <aside>
+        <h2>Cart Summary</h2>
+        <ul>
+          <li>Total Products</li>
+          <li>Total Quantity</li>
+          <li>Total Price</li>
+        </ul>
+        <button type="button">Proceed to Checkout</button>
+      </aside>
+      <script src="./script/index.js"></script>
+    </div>
   </body>
 </html>
