@@ -15,7 +15,6 @@ async function main() {
 
   function createProductList(products) {
     const productList = document.getElementById("product-list");
-    productList.innerHTML = "";
     products.forEach((product) => {
       const { id, title, price, quantity, total, thumbnail } = product;
       const li = document.createElement("li");
@@ -36,13 +35,14 @@ async function main() {
       const plusBtn = document.createElement("button");
       plusBtn.textContent = "+";
       plusBtn.style = "height: 20px";
-      plusBtn.addEventListener("click", () => increaseQuantity(product));
+      plusBtn.addEventListener("click", () => increaseQuantity(product.id));
 
       const quantitySpan = document.createElement("span");
       quantitySpan.textContent = quantity;
-      quantitySpan.id = id;
+      quantitySpan.id = `qty-${id}`;
       const totalSpan = document.createElement("span");
       totalSpan.textContent = total;
+      totalSpan.id = `total-${id}`;
 
       const clearBtn = document.createElement("button");
       clearBtn.textContent = "x";
@@ -77,17 +77,15 @@ async function main() {
 `;
   }
 
-  function increaseQuantity(product) {
-    const newQty = product.quantity + 1;
-    products = products.map((p) => {
-      if (p.id == product.id) {
-        return { ...p, quantity: newQty };
-      } else {
-        return p;
-      }
-    });
-
-    createProductList(products);
+  function increaseQuantity(id) {
+    products = products.map((p) =>
+      p.id === id
+        ? { ...p, quantity: p.quantity + 1, total: (p.quantity + 1) * p.price }
+        : p,
+    );
+    const updatedProduct = products.find((p) => p.id == id);
+    document.getElementById(`qty-${id}`).textContent = updatedProduct.quantity;
+    document.getElementById(`total-${id}`).textContent = updatedProduct.total;
   }
 }
 
