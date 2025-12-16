@@ -19,6 +19,7 @@ async function main() {
       const { id, title, price, quantity, total, thumbnail } = product;
       const li = document.createElement("li");
       li.classList.add("product-container");
+      li.id = `li-${id}`;
 
       const imgElement = document.createElement("img");
       imgElement.src = thumbnail;
@@ -32,6 +33,8 @@ async function main() {
       const minusBtn = document.createElement("button");
       minusBtn.textContent = "-";
       minusBtn.style = "height: 20px";
+      minusBtn.addEventListener("click", () => decreaseQuantity(product.id));
+
       const plusBtn = document.createElement("button");
       plusBtn.textContent = "+";
       plusBtn.style = "height: 20px";
@@ -75,6 +78,29 @@ async function main() {
 <li>Total Quantity ${totalQuantity}</li>
 <li>Total Price ${totalPrice}</li>
 `;
+  }
+
+  function decreaseQuantity(id) {
+    const product = products.find((p) => p.id === id);
+    if (!product) return;
+
+    if (product.quantity === 1) {
+      products = products.filter((p) => p.id !== id);
+      document.getElementById(`li-${id}`).remove();
+    } else {
+      products = products.map((p) =>
+        p.id === id
+          ? {
+              ...p,
+              quantity: p.quantity - 1,
+              total: (p.quantity - 1) * p.price,
+            }
+          : p,
+      );
+    }
+    const updatedProduct = products.find((p) => p.id == id);
+    document.getElementById(`qty-${id}`).textContent = updatedProduct.quantity;
+    document.getElementById(`total-${id}`).textContent = updatedProduct.total;
   }
 
   function increaseQuantity(id) {
