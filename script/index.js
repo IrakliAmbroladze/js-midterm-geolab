@@ -5,7 +5,7 @@ async function main() {
 
   async function fetchProducts() {
     try {
-      const response = await fetch("https://dummyjson.com/carts/12");
+      const response = await fetch("https://dummyjson.com/carts/15");
       const data = await response.json();
       return data.products;
     } catch (err) {
@@ -50,6 +50,7 @@ async function main() {
       const clearBtn = document.createElement("button");
       clearBtn.textContent = "x";
       clearBtn.style = "height: 20px";
+      clearBtn.addEventListener("click", () => deleteItem(product.id));
 
       li.append(
         imgElement,
@@ -78,6 +79,14 @@ async function main() {
 <li>Total Quantity ${totalQuantity}</li>
 <li>Total Price ${totalPrice}</li>
 `;
+  }
+
+  function deleteItem(id) {
+    products = products.filter((p) => p.id !== id);
+    const product = products.find((p) => p.id === id);
+    if (!product) {
+      document.getElementById(`li-${id}`).remove();
+    }
   }
 
   function decreaseQuantity(id) {
