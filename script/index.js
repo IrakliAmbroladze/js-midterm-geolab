@@ -43,4 +43,10 @@ function createCartSummary(products) {
     0,
   );
   const totalPrice = products.reduce((acc, { total }) => acc + total, 0);
+  const summary = document.getElementById("summary");
+  summary.innerHTML = `
+<li>Total Products ${totalProducts}</li>
+<li>Total Quantity ${totalQuantity}</li>
+<li>Total Price ${totalPrice}</li>
+`;
 }
