@@ -15,6 +15,7 @@ async function main() {
 
   function createProductList(products) {
     const productList = document.getElementById("product-list");
+    productList.innerHTML = "";
     products.forEach((product) => {
       const { id, title, price, quantity, total, thumbnail } = product;
       const li = document.createElement("li");
@@ -123,6 +124,17 @@ async function main() {
     document.getElementById(`total-${id}`).textContent = updatedProduct.total;
     createCartSummary(products);
   }
+
+  const search = document.getElementById("search");
+
+  search.addEventListener("input", (e) => {
+    const value = e.target.value.toLowerCase();
+    const filteredData = products.filter((product) =>
+      product.title.toLowerCase().includes(value),
+    );
+
+    createProductList(filteredData);
+  });
 }
 
 main();
