@@ -5,7 +5,7 @@ async function main() {
 
   async function fetchProducts() {
     try {
-      const response = await fetch("https://dummyjson.com/carts/15");
+      const response = await fetch("https://dummyjson.com/carts/18");
       const data = await response.json();
       return data.products;
     } catch (err) {
@@ -19,50 +19,56 @@ async function main() {
     products.forEach((product) => {
       const { id, title, price, quantity, total, thumbnail } = product;
       const li = document.createElement("li");
-      li.classList.add("product-container");
+      li.classList.add("cart-item");
       li.id = `li-${id}`;
 
       const imgElement = document.createElement("img");
       imgElement.src = thumbnail;
       imgElement.alt = title;
+      imgElement.classList.add("thumbnail");
 
       const h3Element = document.createElement("h3");
       h3Element.textContent = title;
-
       const priceDiv = document.createElement("div");
-      priceDiv.textContent = price;
+      priceDiv.textContent = price.toFixed(2);
+      priceDiv.classList.add("item-price");
+
+      const titlePriceContainerDiv = document.createElement("div");
+      titlePriceContainerDiv.append(h3Element, priceDiv);
+
+      const leftPartDiv = document.createElement("div");
+      const rightPartDiv = document.createElement("div");
+      leftPartDiv.append(imgElement, titlePriceContainerDiv);
+      leftPartDiv.classList.add("cart-left-part");
+
       const minusBtn = document.createElement("button");
       minusBtn.textContent = "-";
-      minusBtn.style = "height: 20px";
       minusBtn.addEventListener("click", () => decreaseQuantity(product.id));
+      minusBtn.classList.add("btn");
 
       const plusBtn = document.createElement("button");
       plusBtn.textContent = "+";
-      plusBtn.style = "height: 20px";
       plusBtn.addEventListener("click", () => increaseQuantity(product.id));
+      plusBtn.classList.add("btn");
 
       const quantitySpan = document.createElement("span");
       quantitySpan.textContent = quantity;
       quantitySpan.id = `qty-${id}`;
+      quantitySpan.classList.add("item-qty");
+
       const totalSpan = document.createElement("span");
-      totalSpan.textContent = total;
+      totalSpan.textContent = total.toFixed(2);
       totalSpan.id = `total-${id}`;
+      totalSpan.classList.add("item-total");
 
       const clearBtn = document.createElement("button");
       clearBtn.textContent = "x";
-      clearBtn.style = "height: 20px";
       clearBtn.addEventListener("click", () => deleteItem(product.id));
+      clearBtn.classList.add("clear-btn");
 
-      li.append(
-        imgElement,
-        h3Element,
-        priceDiv,
-        minusBtn,
-        quantitySpan,
-        plusBtn,
-        totalSpan,
-        clearBtn,
-      );
+      rightPartDiv.append(minusBtn, quantitySpan, plusBtn, totalSpan, clearBtn);
+      rightPartDiv.classList.add("cart-right-part");
+      li.append(leftPartDiv, rightPartDiv);
       productList.appendChild(li);
     });
   }
@@ -76,7 +82,7 @@ async function main() {
     const totalPrice = products.reduce((acc, { total }) => acc + total, 0);
     document.getElementById("total-products").textContent = totalProducts;
     document.getElementById("total-qty").textContent = totalQuantity;
-    document.getElementById("total-price").textContent = totalPrice;
+    document.getElementById("total-price").textContent = totalPrice.toFixed(2);
   }
 
   function deleteItem(id) {
@@ -110,7 +116,8 @@ async function main() {
     }
     const updatedProduct = products.find((p) => p.id == id);
     document.getElementById(`qty-${id}`).textContent = updatedProduct.quantity;
-    document.getElementById(`total-${id}`).textContent = updatedProduct.total;
+    document.getElementById(`total-${id}`).textContent =
+      updatedProduct.total.toFixed(2);
   }
 
   function increaseQuantity(id) {
@@ -121,7 +128,8 @@ async function main() {
     );
     const updatedProduct = products.find((p) => p.id == id);
     document.getElementById(`qty-${id}`).textContent = updatedProduct.quantity;
-    document.getElementById(`total-${id}`).textContent = updatedProduct.total;
+    document.getElementById(`total-${id}`).textContent =
+      updatedProduct.total.toFixed(2);
     createCartSummary(products);
   }
 
