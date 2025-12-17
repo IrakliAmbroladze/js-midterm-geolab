@@ -15,20 +15,26 @@
           Refresh
         </button>
       </header>
-      <main>
-        <input id="search" type="text" placeholder="Search products by title" />
-        <ul id="product-list"></ul>
-      </main>
-      <aside>
-        <h2>Cart Summary</h2>
-        <ul id="summary">
-          <li>Total Products <span id="total-products">0</span></li>
-          <li>Total Quantity <span id="total-qty">0</span></li>
-          <li>Total Price <span id="total-price">0</span></li>
-        </ul>
-        <button type="button">Proceed to Checkout</button>
-      </aside>
-      <script src="./script/index.js"></script>
+      <div class="content">
+        <main class="main-section">
+          <input
+            id="search"
+            type="text"
+            placeholder="Search products by title"
+          />
+          <ul id="product-list"></ul>
+        </main>
+        <aside class="summary-section">
+          <h2 class="summary-title">Cart Summary</h2>
+          <ul id="summary">
+            <li>Total Products <span id="total-products">0</span></li>
+            <li>Total Quantity <span id="total-qty">0</span></li>
+            <li>Total Price <span id="total-price">0</span></li>
+          </ul>
+          <button type="button">Proceed to Checkout</button>
+        </aside>
+      </div>
     </div>
+    <script src="./script/index.js"></script>
   </body>
 </html>
