@@ -73,12 +73,9 @@ async function main() {
       0,
     );
     const totalPrice = products.reduce((acc, { total }) => acc + total, 0);
-    const summary = document.getElementById("summary");
-    summary.innerHTML = `
-<li>Total Products ${totalProducts}</li>
-<li>Total Quantity ${totalQuantity}</li>
-<li>Total Price ${totalPrice}</li>
-`;
+    document.getElementById("total-products").textContent = totalProducts;
+    document.getElementById("total-qty").textContent = totalQuantity;
+    document.getElementById("total-price").textContent = totalPrice;
   }
 
   function deleteItem(id) {
@@ -87,6 +84,7 @@ async function main() {
     if (!product) {
       document.getElementById(`li-${id}`).remove();
     }
+    createCartSummary(products);
   }
 
   function decreaseQuantity(id) {
@@ -96,6 +94,7 @@ async function main() {
     if (product.quantity === 1) {
       products = products.filter((p) => p.id !== id);
       document.getElementById(`li-${id}`).remove();
+      createCartSummary(products);
     } else {
       products = products.map((p) =>
         p.id === id
@@ -106,6 +105,7 @@ async function main() {
             }
           : p,
       );
+      createCartSummary(products);
     }
     const updatedProduct = products.find((p) => p.id == id);
     document.getElementById(`qty-${id}`).textContent = updatedProduct.quantity;
@@ -121,6 +121,7 @@ async function main() {
     const updatedProduct = products.find((p) => p.id == id);
     document.getElementById(`qty-${id}`).textContent = updatedProduct.quantity;
     document.getElementById(`total-${id}`).textContent = updatedProduct.total;
+    createCartSummary(products);
   }
 }
 
