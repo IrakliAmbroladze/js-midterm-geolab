@@ -4,28 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>geolab-JS-midterm</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./styles/reset.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
   </head>
   <body>
-    <header>
-      <h1>My Cart</h1>
-      <button id="refreshBtn" type="button">Refresh</button>
-    </header>
     <div class="container">
-      <main>
-        <input id="search" type="text" placeholder="Search products by title" />
-        <ul id="product-list"></ul>
-      </main>
-      <aside>
-        <h2>Cart Summary</h2>
-        <ul id="summary">
-          <li>Total Products <span id="total-products">0</span></li>
-          <li>Total Quantity <span id="total-qty">0</span></li>
-          <li>Total Price <span id="total-price">0</span></li>
-        </ul>
-        <button type="button">Proceed to Checkout</button>
-      </aside>
-      <script src="./script/index.js"></script>
+      <header class="header">
+        <h1 class="header-title">My Cart</h1>
+        <button id="refreshBtn" class="refreshBtn" type="button">
+          Refresh
+        </button>
+      </header>
+      <div class="content">
+        <main class="main-section">
+          <input
+            id="search"
+            class="search"
+            type="text"
+            placeholder="Search products by title ..."
+          />
+          <ul id="product-list" class="product-list"></ul>
+        </main>
+        <aside class="summary-section">
+          <h2 class="summary-title">Cart Summary</h2>
+          <ul id="summary" class="summary">
+            <li>Total Products <span id="total-products">0</span></li>
+            <li>Total Quantity <span id="total-qty">0</span></li>
+            <li>Total Price <span id="total-price">0.00</span></li>
+          </ul>
+          <button
+            type="button"
+            class="checkout-btn"
+            onclick="alert('Congrats on your purchase!')"
+          >
+            Proceed to Checkout
+          </button>
+        </aside>
+      </div>
     </div>
+    <script src="./script/index.js"></script>
   </body>
 </html>
