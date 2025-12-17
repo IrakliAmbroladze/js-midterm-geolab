@@ -22,8 +22,9 @@
 }
 
 .refreshBtn {
-  color: #555;
-  padding: 4px 8px;
+  border: none;
+  color: #444;
+  padding: 8px 12px;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -44,15 +45,49 @@
 
 .summary-section {
   flex: 1;
-  padding: 10px;
+  padding: 20px;
+  border: 1px solid #999;
+  border-radius: 8px;
 }
 
 .summary-title {
   font-size: 24px;
   font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #999;
+}
+.summary li {
+  display: flex;
+  justify-content: space-between;
+  color: #777;
+}
+
+.summary li span {
+  font-weight: 600;
+  color: #000;
 }
 
 .content {
   display: flex;
   gap: 20px;
+  align-items: start;
+}
+
+.checkout-btn {
+  width: 100%;
+  margin-top: 20px;
+  color: #fff;
+  background-color: #1565c0;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
 }
