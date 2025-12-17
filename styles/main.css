@@ -91,3 +91,10 @@
   border-radius: 8px;
   cursor: pointer;
 }
+
+.search {
+  padding: 10px;
+  border: 1px solid #999;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
