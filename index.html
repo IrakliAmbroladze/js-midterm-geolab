@@ -4,14 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>geolab-JS-midterm</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./styles/reset.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
   </head>
   <body>
-    <header>
-      <h1>My Cart</h1>
-      <button id="refreshBtn" type="button">Refresh</button>
-    </header>
     <div class="container">
+      <header class="header">
+        <h1 class="header-title">My Cart</h1>
+        <button id="refreshBtn" class="refreshBtn" type="button">
+          Refresh
+        </button>
+      </header>
       <main>
         <input id="search" type="text" placeholder="Search products by title" />
         <ul id="product-list"></ul>
